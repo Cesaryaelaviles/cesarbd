@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Equipo</title>
+    <title>Carros</title>
  
     <!-- Ícono para la página web. -->
     <link rel="icon" sizes="32x32" href="favicon.ico">
@@ -35,13 +35,13 @@
   <body>
   <header>
       <center>
-      <h1>Equipo Favorito y Futbolista</h1>
+      <h1>Carros</h1>
       </center>
     </header>
     <br><br><center>
-    <p><b>Equipos Ingresados:</b></p>
+    <p><b>Carros Ingresados:</b></p>
     <br></center><center>
-    <p><b>Da click sobre el equipo a Modificar</b></p>
+    <p><b>Da click sobre el Carro a Modificar</b></p>
     <br><br><br></center>
     <ul id="ul">
       <center>
@@ -50,7 +50,7 @@
     </ul>
     <br><br><br>
     <center>
-	<a href="nombreNuevo.html"><b>Agregar un Equipo nuevo&hellip;</b></a><br><br><br>
+	<a href="carroNuevo.html"><b>Agregar un Carro nuevo&hellip;</b></a><br><br><br>
     <footer is="mi-footer"></footer>
     </center>
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
@@ -63,17 +63,22 @@
         .catch(error)
         .then(consulta);
       function consulta() {
-        firebase.firestore().collection("CEquipo").onSnapshot(
+        firebase.firestore().collection("CARRO").onSnapshot(
           querySnapshot => {
             ul.innerHTML = "";
             querySnapshot.forEach(doc => {
-              const cesh = doc.data();
+              const carro = doc.data();
               ul.innerHTML += /*html*/
                 `<li style="list-style: none;">
-                  <a style="text-decoration:none;" href="nombre.html?id=${url(doc.id)}">
-                   Equipo: ${cod(cesh.EQU_EQUIPO)} Futbolista: ${cod(cesh.FUT_FUTBOLISTA)} 
+                  <a style="text-decoration:none;" href="carro.html?id=${url(doc.id)}">
+                   Modelo: ${cod(carro.MODELO)}
                   </a>
-                </li>`;
+                </li> 
+				  <li style="list-style: none;">
+                  <a style="text-decoration:none;" href="carro.html?id=${url(doc.id)}">
+                  Marca: ${cod(carro.MARCA)} 
+                  </a>
+                </li><br>`;
             });
           },
           error);
